@@ -9,12 +9,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         heads_tails = receivedNumber
     }
     if (hintsent == 1 && guesssent == 1) {
-        if (guess == heads_tails) {
-            basic.showIcon(IconNames.Yes)
-        } else {
-            basic.showIcon(IconNames.No)
-        }
-        radio.sendString("" + (phonename))
+        CheckForWinner()
     }
     basic.pause(1000)
 })
@@ -40,6 +35,14 @@ input.onButtonPressed(Button.A, function () {
     }
     basic.pause(1000)
 })
+function CheckForWinner () {
+    if (guess == heads_tails) {
+        basic.showIcon(IconNames.Yes)
+    } else {
+        basic.showIcon(IconNames.No)
+    }
+    radio.sendString("" + (phonename))
+}
 input.onButtonPressed(Button.AB, function () {
     player = (player + 1) % 2
     basic.showNumber(player)
@@ -67,14 +70,9 @@ radio.onReceivedString(function (receivedString) {
         phonenumber = receivedString
         basic.showString("" + (phonenumber))
         hintsent = 1
-        if (hintsent == 1 && guesssent == 1) {
-            if (guess == heads_tails) {
-                basic.showIcon(IconNames.Yes)
-            } else {
-                basic.showIcon(IconNames.No)
-            }
-            radio.sendString("" + (phonename))
-        }
+    }
+    if (hintsent == 1 && guesssent == 1) {
+        CheckForWinner()
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -89,9 +87,9 @@ input.onButtonPressed(Button.B, function () {
 let tailsname = ""
 let tailsnumber = ""
 let headsname = ""
+let phonename = ""
 let headsnumber = ""
 let phonenumber = ""
-let phonename = ""
 let hintsent = 0
 let guesssent = 0
 let guess = 0
