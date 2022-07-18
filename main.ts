@@ -60,12 +60,10 @@ radio.onReceivedString(function (receivedString) {
         hintsent = 1
     } else {
         phonename = receivedString
-        if (hintsent == 1 && guesssent == 1) {
-            if (guess == heads_tails) {
-                basic.showIcon(IconNames.Yes)
-            } else {
-                basic.showIcon(IconNames.No)
-            }
+        if (guess == heads_tails) {
+            basic.showIcon(IconNames.Yes)
+        } else {
+            basic.showIcon(IconNames.No)
         }
         basic.pause(1000)
         basic.showString("" + (phonename))
