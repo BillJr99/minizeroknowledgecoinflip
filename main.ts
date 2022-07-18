@@ -67,6 +67,14 @@ radio.onReceivedString(function (receivedString) {
         phonenumber = receivedString
         basic.showString("" + (phonenumber))
         hintsent = 1
+        if (hintsent == 1 && guesssent == 1) {
+            if (guess == heads_tails) {
+                basic.showIcon(IconNames.Yes)
+            } else {
+                basic.showIcon(IconNames.No)
+            }
+            radio.sendString("" + (phonename))
+        }
     }
 })
 input.onButtonPressed(Button.B, function () {
