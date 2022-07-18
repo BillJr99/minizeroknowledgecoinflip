@@ -16,6 +16,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         }
         radio.sendString("" + (phonename))
     }
+    basic.pause(1000)
 })
 input.onButtonPressed(Button.A, function () {
     if (player == 0) {
@@ -37,6 +38,7 @@ input.onButtonPressed(Button.A, function () {
             basic.showIcon(IconNames.EigthNote)
         }
     }
+    basic.pause(1000)
 })
 input.onButtonPressed(Button.AB, function () {
     player = (player + 1) % 2
@@ -54,6 +56,14 @@ input.onButtonPressed(Button.AB, function () {
 radio.onReceivedString(function (receivedString) {
     if (player == 0) {
         phonenumber = receivedString
+        if (hintsent == 1 && guesssent == 1) {
+            if (guess == heads_tails) {
+                basic.showIcon(IconNames.Yes)
+            } else {
+                basic.showIcon(IconNames.No)
+            }
+        }
+        basic.pause(1000)
         basic.showString("" + (phonenumber))
         hintsent = 1
     } else {
