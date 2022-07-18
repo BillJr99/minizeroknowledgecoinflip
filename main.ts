@@ -14,19 +14,19 @@ radio.onReceivedNumber(function (receivedNumber) {
         } else {
             basic.showIcon(IconNames.No)
         }
-        radio.sendString(phonename)
+        radio.sendString("" + (phonename))
     }
 })
 input.onButtonPressed(Button.A, function () {
     if (player == 0) {
         heads_tails = (heads_tails + 1) % 2
         if (heads_tails == 0) {
-            phonenumber = "2155551212"
-            phonename = "Harriet Smith"
+            phonenumber = headsnumber
+            phonename = headsname
             basic.showIcon(IconNames.Heart)
         } else {
-            phonenumber = "2155553434"
-            phonename = "Thomas Lee"
+            phonenumber = tailsnumber
+            phonename = tailsname
             basic.showIcon(IconNames.EigthNote)
         }
     } else {
@@ -43,26 +43,37 @@ input.onButtonPressed(Button.AB, function () {
     basic.showNumber(player)
     hintsent = 0
     guesssent = 0
+    tailsnumber = "2155553434"
+    tailsname = "Thomas Lee"
+    headsnumber = "2155551212"
+    headsname = "Harriet Smith"
+    heads_tails = 0
+    phonenumber = headsnumber
+    phonename = headsname
 })
 radio.onReceivedString(function (receivedString) {
     if (player == 0) {
         phonenumber = receivedString
-        basic.showString(phonenumber)
+        basic.showString("" + (phonenumber))
         hintsent = 1
     } else {
         phonename = receivedString
-        basic.showString(phonename)
+        basic.showString("" + (phonename))
     }
 })
 input.onButtonPressed(Button.B, function () {
     if (player == 0) {
-        radio.sendString(phonenumber)
+        radio.sendString("" + (phonenumber))
         hintsent = 1
     } else {
         radio.sendNumber(guess)
         guesssent = 1
     }
 })
+let tailsname = ""
+let tailsnumber = ""
+let headsname = ""
+let headsnumber = ""
 let phonenumber = ""
 let phonename = ""
 let hintsent = 0
@@ -71,6 +82,7 @@ let guess = 0
 let heads_tails = 0
 let player = 0
 radio.setGroup(1)
+radio.sendValue("init", 0)
 player = 0
 heads_tails = 0
 guess = 0
