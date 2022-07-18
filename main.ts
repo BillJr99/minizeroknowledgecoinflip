@@ -56,6 +56,10 @@ input.onButtonPressed(Button.AB, function () {
 radio.onReceivedString(function (receivedString) {
     if (player == 0) {
         phonenumber = receivedString
+        basic.showString("" + (phonenumber))
+        hintsent = 1
+    } else {
+        phonename = receivedString
         if (hintsent == 1 && guesssent == 1) {
             if (guess == heads_tails) {
                 basic.showIcon(IconNames.Yes)
@@ -64,10 +68,6 @@ radio.onReceivedString(function (receivedString) {
             }
         }
         basic.pause(1000)
-        basic.showString("" + (phonenumber))
-        hintsent = 1
-    } else {
-        phonename = receivedString
         basic.showString("" + (phonename))
     }
 })
